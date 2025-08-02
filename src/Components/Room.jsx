@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import MainStream from "./MainStream";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import Peer from "simple-peer";
+import "./style.css"; // Assuming you have some styles in this file
 
 const socket = io("http://localhost:3001");
 
 export default function Room() {
   const { roomId } = useParams();
+  const navigate = useNavigate();
   const [peers, setPeers] = useState([]);
+  const [micEnabled, setMicEnabled] = useState(true);
   const myVideo = useRef();
   const userStream = useRef();
   const peersRef = useRef([]);
@@ -31,7 +33,20 @@ export default function Room() {
         const item = peersRef.current.find(p => p.peerID === from);
         if (item) item.peer.signal(signal);
       });
+
+      socket.on("user-disconnected", ({ id }) => {
+        const peerObj = peersRef.current.find(p => p.peerID === id);
+        if (peerObj) {
+          peerObj.peer.destroy();
+          peersRef.current = peersRef.current.filter(p => p.peerID !== id);
+          setPeers(prev => prev.filter(p => p !== peerObj.peer));
+        }
+      });
     });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   function createPeer(userToSignal, callerID, stream) {
@@ -48,20 +63,42 @@ export default function Room() {
     return peer;
   }
 
-  return (
-    <div>
-      <h2>Room: {roomId}</h2>
-      
-      <div>
-        <video playsInline muted autoPlay ref={myVideo} style={{ width: "200px" }} />
-        {peers.map((peer, index) => (
-          <Video key={index} peer={peer} />
-        ))}
-      </div>
-      <hr />
-      <MainStream/>
+  function toggleMic() {
+    const audioTrack = userStream.current.getAudioTracks()[0];
+    if (audioTrack) {
+      audioTrack.enabled = !audioTrack.enabled;
+      setMicEnabled(audioTrack.enabled);
+    }
+  }
+
+  function leaveRoom() {
+    userStream.current.getTracks().forEach(track => track.stop());
+    peersRef.current.forEach(p => p.peer.destroy());
+    socket.emit("leave-room", { roomId });
+    navigate("/"); // Or replace with a landing route
+  }
+
+return (
+  <div className="page-container">
+    <h2>Room: {roomId}</h2>
+
+    <div className="video-grid">
+      <video playsInline muted autoPlay ref={myVideo} />
+      {peers.map((peer, index) => (
+        <Video key={index} peer={peer} />
+      ))}
     </div>
-  );
+
+    <div className="controls">
+      <button onClick={toggleMic}>
+        {micEnabled ? "Mute Mic" : "Unmute Mic"}
+      </button>
+      <button onClick={leaveRoom} className="leave">
+        Leave Room
+      </button>
+    </div>
+  </div>
+);
 }
 
 function Video({ peer }) {

@@ -2,6 +2,18 @@
   "name": "conference-stream",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://conference-stream.github.io/ConferenceRoomsClient",
+  "description": "A real-time video conferencing application built with React, WebRTC, and Socket.IO.",
+  "keywords": [
+    "react",
+    "webrtc",
+    "socket.io",
+    "video-conferencing",
+    "real-time",
+    "conference",
+    "streaming"
+  ],
+  "author": "J Jebershon vetha singh <jebershon100@gmail.com>",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -22,7 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
