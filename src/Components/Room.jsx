@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import "./style.css";
 
-const socket = io("http://localhost:5000"); // Use your backend address here
+const socket = io("https://conferenceroomsserver.onrender.com"); // Use your backend address here
 
 export default function Room() {
   const { roomId } = useParams();
