@@ -1,15 +1,15 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import JoinRoom from './Components/JoinRoom';
 import Room from './Components/Room';
 
 function App() {
   return (
-    <HashRouter basename='/ConferenceRoomsClient/'>
+    <Router>
       <Routes>
         <Route path="/" element={<JoinRoom />} />
         <Route path="/room/:roomId" element={<Room />} />
       </Routes>
-    </HashRouter>
+    </Router>
   );
 }
 
