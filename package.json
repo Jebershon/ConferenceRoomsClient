@@ -2,7 +2,7 @@
   "name": "conference-stream",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://conference-stream.github.io/ConferenceRoomsClient",
+  "homepage": "https://jebershon.github.io/ConferenceRoomsClient",
   "description": "A real-time video conferencing application built with React, WebRTC, and Socket.IO.",
   "keywords": [
     "react",
