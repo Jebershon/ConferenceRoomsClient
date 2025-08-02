@@ -95,3 +95,59 @@ button:hover {
 .leave-btn:hover {
   background-color: #c62828;
 }
+
+.page-container {
+  min-height: 100vh;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-container h2 {
+  color: #fff;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.form-container {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 320px;
+}
+
+.form-container input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 2px solid #1976d2;
+  background: #222;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-container input:focus {
+  border-color: #42a5f5;
+}
+
+.form-container button {
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-container button:hover {
+  background: #0d47a1;
+}
