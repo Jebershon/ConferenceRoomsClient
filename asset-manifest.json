@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ConferenceRoomsClient/static/css/main.1860d234.css",
-    "main.js": "/ConferenceRoomsClient/static/js/main.74157a64.js",
+    "main.css": "/ConferenceRoomsClient/static/css/main.8dd5a3fa.css",
+    "main.js": "/ConferenceRoomsClient/static/js/main.56d5967a.js",
     "static/js/453.851f7b6c.chunk.js": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js",
     "index.html": "/ConferenceRoomsClient/index.html",
-    "main.1860d234.css.map": "/ConferenceRoomsClient/static/css/main.1860d234.css.map",
-    "main.74157a64.js.map": "/ConferenceRoomsClient/static/js/main.74157a64.js.map",
+    "main.8dd5a3fa.css.map": "/ConferenceRoomsClient/static/css/main.8dd5a3fa.css.map",
+    "main.56d5967a.js.map": "/ConferenceRoomsClient/static/js/main.56d5967a.js.map",
     "453.851f7b6c.chunk.js.map": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1860d234.css",
-    "static/js/main.74157a64.js"
+    "static/css/main.8dd5a3fa.css",
+    "static/js/main.56d5967a.js"
   ]
 }
