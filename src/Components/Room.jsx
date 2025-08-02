@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import Peer from "simple-peer";
+import { toast } from "react-toastify";
 import "./style.css";
 
-const socket = io("https://conferenceroomsserver.onrender.com"); // Use your backend address here
+const socket = io("http://localhost:5000"); // Your backend URL
 
 export default function Room() {
   const { roomId } = useParams();
@@ -30,6 +31,7 @@ export default function Room() {
         }
 
         socket.emit("join-room", { roomId, userName: username });
+        toast.success("Joined room!");
 
         socket.on("peer-list", (peersInRoom) => {
           const newPeers = [];
@@ -47,6 +49,7 @@ export default function Room() {
             const peer = createPeer(socketId, socket.id, stream);
             peersRef.current.push({ peerID: socketId, peer });
             setPeers(prev => [...prev, peer]);
+            toast.info("A user joined the room.");
           }
         });
 
@@ -72,12 +75,19 @@ export default function Room() {
             peerObj.peer.destroy();
             peersRef.current = peersRef.current.filter(p => p.peerID !== id);
             setPeers(prev => prev.filter(p => p !== peerObj.peer));
+            toast.warn("A user left the room.");
           }
         });
+
+        socket.on("room-ended", () => {
+          toast.error("Room has ended.");
+          setTimeout(() => navigate("/"), 2000);
+        });
+
       } catch (err) {
         console.error("Media error:", err);
-        alert("Camera or microphone is already in use or permission denied.");
-        navigate("/");
+        toast.error("Camera or microphone is already in use or permission denied.");
+        setTimeout(() => navigate("/"), 2000);
       }
     }
 
@@ -133,6 +143,7 @@ export default function Room() {
     if (audioTrack) {
       audioTrack.enabled = !audioTrack.enabled;
       setMicEnabled(audioTrack.enabled);
+      toast.info(audioTrack.enabled ? "Microphone enabled" : "Microphone muted");
     }
   }
 
@@ -141,6 +152,7 @@ export default function Room() {
     if (videoTrack) {
       videoTrack.enabled = !videoTrack.enabled;
       setCamEnabled(videoTrack.enabled);
+      toast.info(videoTrack.enabled ? "Camera enabled" : "Camera disabled");
     }
   }
 
@@ -148,23 +160,28 @@ export default function Room() {
     userStream.current?.getTracks().forEach(track => track.stop());
     peersRef.current.forEach(p => p.peer.destroy());
     socket.emit("leave-room", { roomId });
-    navigate("/");
+    toast("You left the room.");
+    setTimeout(() => navigate("/"), 1000);
+  }
+
+  function endCall() {
+    userStream.current?.getTracks().forEach(track => track.stop());
+    peersRef.current.forEach(p => p.peer.destroy());
+    socket.emit("end-room", { roomId });
+    toast("You ended the call.");
+    setTimeout(() => navigate("/"), 1000);
   }
 
   return (
     <div className="room-container">
-      {/* Main Stream fills the screen */}
       <div className="main-stream-bg">
         <span>Main Stream Area (Not Yet Implemented)</span>
       </div>
 
-      {/* Overlaid Top Info */}
       <div className="top-bar">
-        <h2>Room ID: {roomId}</h2>
-        <h3>Welcome, {username}!</h3>
+        <span className="badge-heading">Room ID: {roomId}</span>
       </div>
 
-      {/* Participant Video Tiles */}
       <div className="participants-overlay">
         <video
           className="participant-video"
@@ -178,16 +195,18 @@ export default function Room() {
         ))}
       </div>
 
-      {/* Controls */}
       <div className="controls-overlay">
         <button onClick={toggleMic}>
-          {micEnabled ? "Mute Mic" : "Unmute Mic"}
+          <i className={`bi ${micEnabled ? "bi-mic-fill" : "bi-mic-mute-fill"}`}></i>
         </button>
         <button onClick={toggleCam}>
-          {camEnabled ? "Turn Off Camera" : "Turn On Camera"}
+          <i className={`bi ${camEnabled ? "bi-camera-video-fill" : "bi-camera-video-off-fill"}`}></i>
         </button>
-        <button className="leave-btn" onClick={leaveRoom}>
-          End Call
+        <button onClick={leaveRoom} className="leave-btn">
+          <i className="bi bi-box-arrow-left"></i>
+        </button>
+        <button onClick={endCall} className="end-btn">
+          <i className="bi bi-telephone-x-fill"></i>
         </button>
       </div>
     </div>

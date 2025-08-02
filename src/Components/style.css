@@ -96,6 +96,14 @@ button:hover {
   background-color: #c62828;
 }
 
+.end-btn {
+  background-color: #e53935;
+}
+
+.end-btn:hover {
+  background-color: #c62828;
+}
+
 .page-container {
   min-height: 100vh;
   background: #111;
@@ -150,4 +158,25 @@ button:hover {
 
 .form-container button:hover {
   background: #0d47a1;
+}
+
+.badge-heading {
+  display: inline-block;
+  background: #1976d2;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+.top-bar h3 {
+  margin: 6px 0 0 0;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.2px;
 }

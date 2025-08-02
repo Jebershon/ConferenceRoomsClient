@@ -4,12 +4,14 @@ import Room from './Components/Room';
 
 function App() {
   return (
-    <Router>
+    <>
+      <Router>
       <Routes>
         <Route path="/" element={<JoinRoom />} />
         <Route path="/room/:roomId" element={<Room />} />
       </Routes>
-    </Router>
+      </Router>  
+    </>
   );
 }
 
