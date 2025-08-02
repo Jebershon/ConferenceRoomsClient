@@ -5,7 +5,7 @@ import Peer from "simple-peer";
 import { toast } from "react-toastify";
 import "./style.css";
 
-const socket = io("http://localhost:5000"); // Your backend URL
+const socket = io("https://conferenceroomsserver.onrender.com"); // Your backend URL
 
 export default function Room() {
   const { roomId } = useParams();
