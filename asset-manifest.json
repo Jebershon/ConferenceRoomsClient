@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/ConferenceRoomsClient/static/css/main.b0c36409.css",
-    "main.js": "/ConferenceRoomsClient/static/js/main.56d5967a.js",
+    "main.css": "/ConferenceRoomsClient/static/css/main.720f41ac.css",
+    "main.js": "/ConferenceRoomsClient/static/js/main.f22a870e.js",
     "static/js/453.851f7b6c.chunk.js": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/ConferenceRoomsClient/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
+    "static/media/bootstrap-icons.woff2?": "/ConferenceRoomsClient/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/ConferenceRoomsClient/index.html",
-    "main.b0c36409.css.map": "/ConferenceRoomsClient/static/css/main.b0c36409.css.map",
-    "main.56d5967a.js.map": "/ConferenceRoomsClient/static/js/main.56d5967a.js.map",
+    "main.720f41ac.css.map": "/ConferenceRoomsClient/static/css/main.720f41ac.css.map",
+    "main.f22a870e.js.map": "/ConferenceRoomsClient/static/js/main.f22a870e.js.map",
     "453.851f7b6c.chunk.js.map": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b0c36409.css",
-    "static/js/main.56d5967a.js"
+    "static/css/main.720f41ac.css",
+    "static/js/main.f22a870e.js"
   ]
 }
