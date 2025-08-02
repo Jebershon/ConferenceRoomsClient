@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ConferenceRoomsClient/static/css/main.1860d234.css",
-    "main.js": "/ConferenceRoomsClient/static/js/main.330561a4.js",
+    "main.js": "/ConferenceRoomsClient/static/js/main.eef0b585.js",
     "static/js/453.851f7b6c.chunk.js": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js",
     "index.html": "/ConferenceRoomsClient/index.html",
     "main.1860d234.css.map": "/ConferenceRoomsClient/static/css/main.1860d234.css.map",
-    "main.330561a4.js.map": "/ConferenceRoomsClient/static/js/main.330561a4.js.map",
+    "main.eef0b585.js.map": "/ConferenceRoomsClient/static/js/main.eef0b585.js.map",
     "453.851f7b6c.chunk.js.map": "/ConferenceRoomsClient/static/js/453.851f7b6c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1860d234.css",
-    "static/js/main.330561a4.js"
+    "static/js/main.eef0b585.js"
   ]
 }
